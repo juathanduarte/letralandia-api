@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateProfileDto } from './dto/create-profile.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
@@ -19,6 +20,23 @@ export class UserService {
       ...createdUser,
       password: undefined,
     };
+  }
+
+  async createProfile(userId: number, createProfileDto: CreateProfileDto) {
+    const profile = await this.prisma.profile.create({
+      data: {
+        ...createProfileDto,
+        userId,
+      },
+    });
+
+    return profile;
+  }
+
+  async findAllProfiles(userId: number) {
+    return this.prisma.profile.findMany({
+      where: { userId },
+    });
   }
 
   findByEmail(email: string) {

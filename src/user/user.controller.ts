@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { CreateProfileDto } from './dto/create-profile.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
 
@@ -7,10 +8,23 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @IsPublic()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
+  }
+  @IsPublic()
+  @Post(':userId/profile')
+  createProfile(
+    @Param('userId') userId: number,
+    @Body() createProfileDto: CreateProfileDto,
+  ) {
+    return this.userService.createProfile(userId, createProfileDto);
+  }
+
+  @IsPublic()
+  @Get(':userId/profiles')
+  findAllProfiles(@Param('userId') userId: number) {
+    return this.userService.findAllProfiles(userId);
   }
 
   @Get()

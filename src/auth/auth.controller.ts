@@ -20,7 +20,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   login(@Request() req: AuthRequest) {
-    console.log('req', req.user);
+    console.log('Fez login:', req.user);
     return this.authService.login(req.user);
   }
 }
