@@ -26,6 +26,7 @@ model Profile {
   name   String
   userId Int
   user   User   @relation(fields: [userId], references: [id])
+  gender String @default("male")
 
   @@unique([name, userId])
 }
