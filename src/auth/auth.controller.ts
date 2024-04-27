@@ -25,10 +25,21 @@ export class AuthController {
     console.log('Fez login:', req.user);
     return this.authService.login(req.user);
   }
+
   @IsPublic()
   @Get('me')
   @UseGuards(JwtAuthGuard)
   async getMe(@Request() req: any) {
     return { userId: req.user.userId };
+  }
+
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  logout(@Request() req: any) {
+    const token = req.headers.authorization.split(' ')[1];
+    this.authService.logout(token);
+    console.log('Fez logout:', req.user);
+    return { message: 'Logout successful' };
   }
 }

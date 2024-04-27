@@ -8,6 +8,8 @@ import { UserToken } from './models/UserToken';
 
 @Injectable()
 export class AuthService {
+  private readonly jwtBlacklist = new Set<string>();
+
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
@@ -43,5 +45,15 @@ export class AuthService {
     }
 
     throw new Error('E-mail ou senha incorretos.');
+  }
+
+  logout(token: string) {
+    console.log('jwtBlacklist:', this.jwtBlacklist);
+    this.jwtBlacklist.add(token);
+    console.log('Token adicionado à blacklist:', token);
+  }
+
+  isTokenBlacklisted(token: string): boolean {
+    return this.jwtBlacklist.has(token);
   }
 }
