@@ -42,4 +42,35 @@ export class UserService {
   findByEmail(email: string) {
     return this.prisma.user.findUnique({ where: { email } });
   }
+
+  async findProfileDetails(userId: number, profileId: number) {
+    return this.prisma.profile.findFirst({
+      where: {
+        id: profileId,
+        userId: userId,
+      },
+      include: {
+        user: true, // Isso incluirá os detalhes do usuário associado ao perfil
+      },
+    });
+  }
+
+  async deleteProfile(userId: number, profileId: number) {
+    const profile = await this.prisma.profile.findFirst({
+      where: {
+        id: profileId,
+        userId: userId,
+      },
+    });
+
+    if (!profile) {
+      throw new Error('Profile not found or does not belong to the user');
+    }
+
+    return this.prisma.profile.delete({
+      where: {
+        id: profileId,
+      },
+    });
+  }
 }

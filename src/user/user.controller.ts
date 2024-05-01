@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -31,5 +31,23 @@ export class UserController {
   @Get()
   findByEmail(@Body() email: string) {
     return this.userService.findByEmail(email);
+  }
+
+  @IsPublic()
+  @Get(':userId/profile/:profileId')
+  async getProfileDetails(
+    @Param('userId') userId: number,
+    @Param('profileId') profileId: number,
+  ) {
+    return this.userService.findProfileDetails(userId, profileId);
+  }
+
+  @IsPublic()
+  @Delete(':userId/profile/:profileId')
+  deleteProfile(
+    @Param('userId') userId: number,
+    @Param('profileId') profileId: number,
+  ) {
+    return this.userService.deleteProfile(userId, profileId);
   }
 }
