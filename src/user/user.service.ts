@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
 export class UserService {
@@ -71,6 +72,25 @@ export class UserService {
       where: {
         id: profileId,
       },
+    });
+  }
+
+  async updateProfile(
+    userId: number,
+    profileId: number,
+    updateProfileDto: UpdateProfileDto,
+  ) {
+    const profile = await this.prisma.profile.findUnique({
+      where: { id: profileId, userId },
+    });
+
+    if (!profile) {
+      throw new Error('Profile not found or does not belong to the user');
+    }
+
+    return this.prisma.profile.update({
+      where: { id: profileId },
+      data: updateProfileDto,
     });
   }
 }
