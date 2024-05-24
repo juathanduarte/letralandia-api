@@ -25,39 +25,25 @@ model Profile {
   @@unique([name, userId])
 }
 
-model FirstGame {
+model Game {
   id     Int     @id @default(autoincrement())
-  phases Phase[]
-}
-
-model SecondGame {
-  id     Int     @id @default(autoincrement())
-  phases Phase[]
-}
-
-model ThirdGame {
-  id     Int     @id @default(autoincrement())
+  type   String
   phases Phase[]
 }
 
 model Phase {
-  id           Int         @id @default(autoincrement())
-  gameId       Int?
-  gameType     String
-  words        Word[]
-  FirstGame    FirstGame?  @relation(fields: [firstGameId], references: [id])
-  firstGameId  Int?
-  SecondGame   SecondGame? @relation(fields: [secondGameId], references: [id])
-  secondGameId Int?
-  ThirdGame    ThirdGame?  @relation(fields: [thirdGameId], references: [id])
-  thirdGameId  Int?
+  id     Int    @id @default(autoincrement())
+  gameId Int
+  game   Game   @relation(fields: [gameId], references: [id])
+  words  Word[]
 }
 
 model Word {
-  id         Int    @id @default(autoincrement())
-  word       String
-  incomplete String
-  emoji      String
-  phaseId    Int
-  phase      Phase  @relation(fields: [phaseId], references: [id])
+  id        Int    @id @default(autoincrement())
+  word      String
+  syllables String
+  size      Int
+  image     String
+  phaseId   Int
+  phase     Phase  @relation(fields: [phaseId], references: [id])
 }

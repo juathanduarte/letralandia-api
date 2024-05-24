@@ -1,35 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateWordDto } from './dto/create-word.dto';
 
 @Injectable()
 export class GameService {
   constructor(private prisma: PrismaService) {}
 
-  async addWordsToPhase(createWordDtos: CreateWordDto[]) {
-    const words = await this.prisma.word.createMany({
-      data: createWordDtos,
+  async getWordsWithImages(gameId: number, phaseId: number) {
+    const words = await this.prisma.word.findMany({
+      where: {
+        phaseId: phaseId,
+        phase: {
+          gameId: gameId,
+        },
+      },
+      select: {
+        word: true,
+        syllables: true,
+        size: true,
+        image: true,
+      },
     });
-    return words;
-  }
 
-  async findAll() {
-    return this.prisma.word.findMany({
-      include: { phase: true },
-    });
-  }
+    console.log(words);
 
-  async findOne(id: number) {
-    return this.prisma.word.findUnique({
-      where: { id },
-      include: { phase: true },
-    });
-  }
-
-  async findWordsByPhase(phaseId: number) {
-    return this.prisma.word.findMany({
-      where: { phaseId },
-      include: { phase: true },
-    });
+    return words.map((word) => ({
+      ...word,
+      image: Buffer.from(word.image, 'base64').toString('base64'),
+    }));
   }
 }
