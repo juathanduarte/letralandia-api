@@ -28,4 +28,20 @@ export class GameService {
       image: Buffer.from(word.image, 'base64').toString('base64'),
     }));
   }
+
+  async getPhases(gameId: number) {
+    const phases = await this.prisma.phase.findMany({
+      where: {
+        gameId: gameId,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    return phases.map((phase, index) => ({
+      id: phase.id,
+      name: `${index + 1}º nível`,
+    }));
+  }
 }

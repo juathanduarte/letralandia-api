@@ -12,8 +12,12 @@ export class GameController {
     @Param('gameId') gameId: number,
     @Param('phaseId') phaseId: number,
   ) {
-    console.log('gameId', gameId);
-    console.log('phaseId', phaseId);
     return this.gameService.getWordsWithImages(gameId, phaseId);
+  }
+
+  @IsPublic()
+  @Get(':gameId/phases')
+  async getPhases(@Param('gameId') gameId: number) {
+    return this.gameService.getPhases(gameId);
   }
 }

@@ -4,64 +4,60 @@ import * as fs from 'fs';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Primeiro, criar o jogo
-  const game = await prisma.game.create({
+  // Adicionar uma nova fase ao jogo existente
+  const gameId = 1; // Substitua pelo ID do jogo existente
+
+  const newPhase = await prisma.phase.create({
     data: {
-      type: 'Completar Letras Faltantes',
-      phases: {
+      gameId: gameId,
+      words: {
         create: [
           {
-            words: {
-              create: [
-                {
-                  word: 'Dado',
-                  syllables: 'Da-do',
-                  size: 4,
-                  image: getImageBase64(
-                    '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/dado.jpg',
-                  ),
-                },
-                {
-                  word: 'Lago',
-                  syllables: 'La-go',
-                  size: 4,
-                  image: getImageBase64(
-                    '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/lago.jpg',
-                  ),
-                },
-                {
-                  word: 'Pote',
-                  syllables: 'Po-te',
-                  size: 4,
-                  image: getImageBase64(
-                    '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/pote.jpg',
-                  ),
-                },
-                {
-                  word: 'Lua',
-                  syllables: 'Lu-a',
-                  size: 3,
-                  image: getImageBase64(
-                    '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/lua.jpg',
-                  ),
-                },
-                {
-                  word: 'Rato',
-                  syllables: 'Ra-to',
-                  size: 4,
-                  image: getImageBase64(
-                    '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/rato.jpg',
-                  ),
-                },
-              ],
-            },
+            word: 'Fita',
+            syllables: 'Fi-ta',
+            size: 4,
+            image: getImageBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/fita.jpg',
+            ),
+          },
+          {
+            word: 'Mesa',
+            syllables: 'Me-sa',
+            size: 4,
+            image: getImageBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/mesa.jpg',
+            ),
+          },
+          {
+            word: 'Casa',
+            syllables: 'Ca-sa',
+            size: 4,
+            image: getImageBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/casa.jpg',
+            ),
+          },
+          {
+            word: 'Tatu',
+            syllables: 'Ta-tu',
+            size: 4,
+            image: getImageBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/tatu.jpg',
+            ),
+          },
+          {
+            word: 'Ovo',
+            syllables: 'O-vo',
+            size: 3,
+            image: getImageBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/ovo.jpg',
+            ),
           },
         ],
       },
     },
   });
 
-  console.log('Game created:', game);
+  console.log('New phase added:', newPhase);
 }
 
 // Função para converter a imagem para base64
