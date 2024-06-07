@@ -18,6 +18,8 @@ export class GameService {
         syllables: true,
         size: true,
         image: true,
+        audioMale: true, // Incluindo a coluna de áudio masculino
+        audioFemale: true, // Incluindo a coluna de áudio feminino
       },
     });
 
@@ -26,6 +28,12 @@ export class GameService {
     return words.map((word) => ({
       ...word,
       image: Buffer.from(word.image, 'base64').toString('base64'),
+      audioMale: word.audioMale
+        ? Buffer.from(word.audioMale, 'base64').toString('base64')
+        : null,
+      audioFemale: word.audioFemale
+        ? Buffer.from(word.audioFemale, 'base64').toString('base64')
+        : null,
     }));
   }
 
