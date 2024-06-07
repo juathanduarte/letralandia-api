@@ -13,73 +13,73 @@ async function main() {
       words: {
         create: [
           {
-            word: 'Porta',
-            syllables: 'Por-ta',
-            size: 5,
+            word: 'Frango',
+            syllables: 'Fran-go',
+            size: 6,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/porta.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/frango.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/porta.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/frango.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/porta.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/frango.mp3',
             ),
           },
           {
-            word: 'Roda',
-            syllables: 'Ro-da',
-            size: 4,
+            word: 'Macaco',
+            syllables: 'Ma-ca-co',
+            size: 6,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/roda.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/macaco.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/roda.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/macaco.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/roda.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/macaco.mp3',
             ),
           },
           {
-            word: 'Toro',
-            syllables: 'To-ro',
-            size: 4,
+            word: 'Martelo',
+            syllables: 'Mar-te-lo',
+            size: 7,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/toro.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/martelo.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/toro.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/martelo.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/toro.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/martelo.mp3',
             ),
           },
           {
-            word: 'Vela',
-            syllables: 'Ve-la',
-            size: 4,
+            word: 'Sorvete',
+            syllables: 'Sor-ve-te',
+            size: 7,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/vela.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/sorvete.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/vela.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/sorvete.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/vela.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/sorvete.mp3',
             ),
           },
           {
-            word: 'Piano',
-            syllables: 'Pi-a-no',
-            size: 5,
+            word: 'Elefante',
+            syllables: 'E-le-fan-te',
+            size: 8,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/piano.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/elefante.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/piano.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/elefante.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/piano.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/elefante.mp3',
             ),
           },
         ],
