@@ -39,11 +39,13 @@ model Phase {
 }
 
 model Word {
-  id        Int    @id @default(autoincrement())
-  word      String
-  syllables String
-  size      Int
-  image     String
-  phaseId   Int
-  phase     Phase  @relation(fields: [phaseId], references: [id])
+  id          Int     @id @default(autoincrement())
+  word        String
+  syllables   String
+  size        Int
+  image       String
+  audioMale   String?
+  audioFemale String?
+  phaseId     Int
+  phase       Phase   @relation(fields: [phaseId], references: [id])
 }
