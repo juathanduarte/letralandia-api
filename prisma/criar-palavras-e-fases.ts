@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Adicionar uma nova fase ao jogo existente
-  const gameId = 1; // Substitua pelo ID do jogo existente
+  const gameId = 3; // Substitua pelo ID do jogo existente
 
   const newPhase = await prisma.phase.create({
     data: {
@@ -13,44 +13,54 @@ async function main() {
       words: {
         create: [
           {
-            word: 'Lâmpada',
-            syllables: 'Lâm-pa-da',
+            word: 'Estrela',
+            syllables: 'Es-tre-la',
             size: 7,
-            image: getImageBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/lampada.jpg',
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/estrela.jpg',
             ),
+            audioMale: null,
+            audioFemale: null,
           },
           {
-            word: 'Coelho',
-            syllables: 'Co-e-lho',
-            size: 7,
-            image: getImageBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/coelho.jpg',
-            ),
-          },
-          {
-            word: 'Ladrão',
-            syllables: 'La-drão',
+            word: 'Escada',
+            syllables: 'Es-ca-da',
             size: 6,
-            image: getImageBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/ladrao.jpg',
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/escada.jpg',
             ),
+            audioMale: null,
+            audioFemale: null,
           },
           {
-            word: 'Espelho',
-            syllables: 'Es-pe-lho',
-            size: 8,
-            image: getImageBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/espelho.jpg',
-            ),
-          },
-          {
-            word: 'Planeta',
-            syllables: 'Pla-ne-ta',
+            word: 'Caderno',
+            syllables: 'Ca-der-no',
             size: 7,
-            image: getImageBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/planeta.jpg',
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/caderno.jpg',
             ),
+            audioMale: null,
+            audioFemale: null,
+          },
+          {
+            word: 'Amarelo',
+            syllables: 'A-ma-re-lo',
+            size: 7,
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/amarelo.jpg',
+            ),
+            audioMale: null,
+            audioFemale: null,
+          },
+          {
+            word: 'Carro',
+            syllables: 'Car-ro',
+            size: 5,
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/carro.jpg',
+            ),
+            audioMale: null,
+            audioFemale: null,
           },
         ],
       },
@@ -60,13 +70,13 @@ async function main() {
   console.log('New phase added:', newPhase);
 }
 
-// Função para converter a imagem para base64
-function getImageBase64(imageFilePath: string): string {
+// Função para converter arquivos para base64
+function getFileBase64(filePath: string): string {
   try {
-    const imageBuffer = fs.readFileSync(imageFilePath);
-    return imageBuffer.toString('base64');
+    const fileBuffer = fs.readFileSync(filePath);
+    return fileBuffer.toString('base64');
   } catch (error) {
-    console.error('Erro ao ler a imagem:', error.message);
+    console.error('Erro ao ler o arquivo:', error.message);
     throw error;
   }
 }

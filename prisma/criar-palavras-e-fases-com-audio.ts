@@ -13,73 +13,73 @@ async function main() {
       words: {
         create: [
           {
-            word: 'Frango',
-            syllables: 'Fran-go',
-            size: 6,
-            image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/frango.jpg',
-            ),
-            audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/frango.mp3',
-            ),
-            audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/frango.mp3',
-            ),
-          },
-          {
-            word: 'Macaco',
-            syllables: 'Ma-ca-co',
-            size: 6,
-            image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/macaco.jpg',
-            ),
-            audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/macaco.mp3',
-            ),
-            audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/macaco.mp3',
-            ),
-          },
-          {
-            word: 'Martelo',
-            syllables: 'Mar-te-lo',
+            word: 'Esquilo',
+            syllables: 'Es-qui-lo',
             size: 7,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/martelo.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/esquilo.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/martelo.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/esquilo.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/martelo.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/esquilo.mp3',
             ),
           },
           {
-            word: 'Sorvete',
-            syllables: 'Sor-ve-te',
-            size: 7,
-            image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/sorvete.jpg',
-            ),
-            audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/sorvete.mp3',
-            ),
-            audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/sorvete.mp3',
-            ),
-          },
-          {
-            word: 'Elefante',
-            syllables: 'E-le-fan-te',
+            word: 'Hospital',
+            syllables: 'Hos-pi-tal',
             size: 8,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/elefante.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/hospital.jpg',
             ),
             audioMale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/elefante.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/hospital.mp3',
             ),
             audioFemale: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/elefante.mp3',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/hospital.mp3',
+            ),
+          },
+          {
+            word: 'Formiga',
+            syllables: 'For-mi-ga',
+            size: 7,
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/formiga.jpg',
+            ),
+            audioMale: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/formiga.mp3',
+            ),
+            audioFemale: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/formiga.mp3',
+            ),
+          },
+          {
+            word: 'Envelope',
+            syllables: 'En-ve-lo-pe',
+            size: 8,
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/envelope.jpg',
+            ),
+            audioMale: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/envelope.mp3',
+            ),
+            audioFemale: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/envelope.mp3',
+            ),
+          },
+          {
+            word: 'Bicicleta',
+            syllables: 'Bi-ci-cle-ta',
+            size: 9,
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/bicicleta.jpg',
+            ),
+            audioMale: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/male/bicicleta.mp3',
+            ),
+            audioFemale: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/audios/female/bicicleta.mp3',
             ),
           },
         ],
