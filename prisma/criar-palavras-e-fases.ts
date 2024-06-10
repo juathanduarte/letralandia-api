@@ -12,52 +12,53 @@ async function main() {
       gameId: gameId,
       words: {
         create: [
+          // Novas palavras da Fase 5
           {
-            word: 'Estrela',
-            syllables: 'Es-tre-la',
+            word: 'Teclado',
+            syllables: 'Te-cla-do',
             size: 7,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/estrela.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/teclado.jpg',
             ),
             audioMale: null,
             audioFemale: null,
           },
           {
-            word: 'Escada',
-            syllables: 'Es-ca-da',
+            word: 'Tesoura',
+            syllables: 'Te-sou-ra',
+            size: 7,
+            image: getFileBase64(
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/tesoura.jpg',
+            ),
+            audioMale: null,
+            audioFemale: null,
+          },
+          {
+            word: 'Médico',
+            syllables: 'Mé-di-co',
             size: 6,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/escada.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/medico.jpg',
             ),
             audioMale: null,
             audioFemale: null,
           },
           {
-            word: 'Caderno',
-            syllables: 'Ca-der-no',
+            word: 'Mochila',
+            syllables: 'Mo-chi-la',
             size: 7,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/caderno.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/mochila.jpg',
             ),
             audioMale: null,
             audioFemale: null,
           },
           {
-            word: 'Amarelo',
-            syllables: 'A-ma-re-lo',
-            size: 7,
+            word: 'Trator',
+            syllables: 'Tra-tor',
+            size: 6,
             image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/amarelo.jpg',
-            ),
-            audioMale: null,
-            audioFemale: null,
-          },
-          {
-            word: 'Carro',
-            syllables: 'Car-ro',
-            size: 5,
-            image: getFileBase64(
-              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/carro.jpg',
+              '/home/juathan-coelho-duarte/Área de trabalho/letralandia-api/prisma/images/trator.jpg',
             ),
             audioMale: null,
             audioFemale: null,
