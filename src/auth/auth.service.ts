@@ -48,9 +48,9 @@ export class AuthService {
   }
 
   logout(token: string) {
-    console.log('jwtBlacklist:', this.jwtBlacklist);
+    // console.log('jwtBlacklist:', this.jwtBlacklist);
     this.jwtBlacklist.add(token);
-    console.log('Token adicionado à blacklist:', token);
+    // console.log('Token adicionado à blacklist:', token);
   }
 
   isTokenBlacklisted(token: string): boolean {

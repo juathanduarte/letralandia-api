@@ -21,5 +21,6 @@ import { LocalStrategy } from './strategies/local.strategy';
 export class AuthModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoginValidationMiddleware).forRoutes('login');
+    // console.log('JWT_SECRET:', process.env.JWT_SECRET);
   }
 }

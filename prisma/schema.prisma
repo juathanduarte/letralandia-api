@@ -16,26 +16,29 @@ model User {
 }
 
 model Profile {
-  id     Int    @id @default(autoincrement())
-  name   String
-  userId Int
-  user   User   @relation(fields: [userId], references: [id])
-  gender String @default("male")
+  id       Int               @id @default(autoincrement())
+  name     String
+  userId   Int
+  user     User              @relation(fields: [userId], references: [id])
+  gender   String            @default("male")
+  gameInfo ProfileGameInfo[]
 
   @@unique([name, userId])
 }
 
 model Game {
-  id     Int     @id @default(autoincrement())
-  type   String
-  phases Phase[]
+  id              Int               @id @default(autoincrement())
+  type            String
+  phases          Phase[]
+  ProfileGameInfo ProfileGameInfo[]
 }
 
 model Phase {
-  id     Int    @id @default(autoincrement())
-  gameId Int
-  game   Game   @relation(fields: [gameId], references: [id])
-  words  Word[]
+  id              Int               @id @default(autoincrement())
+  gameId          Int
+  game            Game              @relation(fields: [gameId], references: [id])
+  words           Word[]
+  ProfileGameInfo ProfileGameInfo[]
 }
 
 model Word {
@@ -48,4 +51,18 @@ model Word {
   audioFemale String?
   phaseId     Int
   phase       Phase   @relation(fields: [phaseId], references: [id])
+}
+
+model ProfileGameInfo {
+  id             Int     @id @default(autoincrement())
+  profileId      Int
+  profile        Profile @relation(fields: [profileId], references: [id])
+  gameId         Int
+  game           Game    @relation(fields: [gameId], references: [id])
+  phaseId        Int
+  phase          Phase   @relation(fields: [phaseId], references: [id])
+  wordsInfo      String
+  completionTime Int
+  incorrectWords Int
+  rating         Int
 }

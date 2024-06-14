@@ -6,10 +6,17 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt.auth-guard';
 import { GameModule } from './game/game.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { ProfileGameInfoModule } from './profilegameinfo/profile-game-info.module';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, GameModule],
+  imports: [
+    PrismaModule,
+    UserModule,
+    AuthModule,
+    GameModule,
+    ProfileGameInfoModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,

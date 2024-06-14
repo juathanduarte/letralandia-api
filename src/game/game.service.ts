@@ -23,7 +23,7 @@ export class GameService {
       },
     });
 
-    console.log(words);
+    // console.log(words);
 
     return words.map((word) => ({
       ...word,
