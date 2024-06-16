@@ -126,4 +126,51 @@ export class ProfileGameInfoService {
       wordsInfo: JSON.parse(info.wordsInfo),
     }));
   }
+
+  async getProfileGameSummary(profileId: number, gameId: number) {
+    const profileGameInfos = await this.prisma.profileGameInfo.findMany({
+      where: {
+        profileId,
+        gameId,
+      },
+    });
+
+    if (!profileGameInfos || profileGameInfos.length === 0) {
+      return {
+        hasInformation: false,
+        message: `No game data found for profileId: ${profileId}, gameId: ${gameId}`,
+      };
+    }
+
+    const totalCompletionTime = profileGameInfos.reduce(
+      (acc, info) => acc + info.completionTime,
+      0,
+    );
+    const totalPhases = profileGameInfos.length;
+
+    const totalWords = await this.prisma.word.count({
+      where: {
+        phase: {
+          gameId: gameId,
+        },
+      },
+    });
+
+    const errors = profileGameInfos.flatMap((info) =>
+      JSON.parse(info.wordsInfo).filter((word) => word.count > 0),
+    );
+
+    const errorCount = errors.reduce((acc, error) => {
+      acc[error.word] = (acc[error.word] || 0) + error.count;
+      return acc;
+    }, {});
+
+    return {
+      hasInformation: true,
+      totalCompletionTime,
+      timePerPhase: totalPhases ? totalCompletionTime / totalPhases : 0,
+      totalWords,
+      errors: errorCount,
+    };
+  }
 }

@@ -23,4 +23,13 @@ export class ProfileGameInfoController {
   ) {
     return this.profileGameInfoService.getAllPhasesForGame(profileId, gameId);
   }
+
+  @IsPublic()
+  @Get(':profileId/:gameId/summary')
+  getProfileGameSummary(
+    @Param('profileId') profileId: number,
+    @Param('gameId') gameId: number,
+  ) {
+    return this.profileGameInfoService.getProfileGameSummary(profileId, gameId);
+  }
 }
