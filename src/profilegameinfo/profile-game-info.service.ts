@@ -173,4 +173,62 @@ export class ProfileGameInfoService {
       errors: errorCount,
     };
   }
+
+  async getAllProfileGamesSummary(profileId: number) {
+    const profileGameInfos = await this.prisma.profileGameInfo.findMany({
+      where: {
+        profileId,
+      },
+    });
+
+    const games = await this.prisma.game.findMany();
+
+    const gamesSummary = await Promise.all(
+      games.map(async (game) => {
+        const gameInfos = profileGameInfos.filter(
+          (info) => info.gameId === game.id,
+        );
+        if (gameInfos.length === 0) {
+          return {
+            gameId: game.id,
+            hasInformation: false,
+          };
+        }
+
+        const totalCompletionTime = gameInfos.reduce(
+          (acc, info) => acc + info.completionTime,
+          0,
+        );
+        const totalPhases = gameInfos.length;
+        const totalWords = await this.prisma.word.count({
+          where: {
+            phase: {
+              gameId: game.id,
+            },
+          },
+        });
+
+        const errors = gameInfos.flatMap((info) =>
+          JSON.parse(info.wordsInfo).filter((word) => word.count > 0),
+        );
+        const errorCount = errors.reduce((acc, error) => {
+          acc[error.word] = (acc[error.word] || 0) + error.count;
+          return acc;
+        }, {});
+
+        return {
+          gameId: game.id,
+          hasInformation: true,
+          totalCompletionTime,
+          timePerPhase: totalPhases ? totalCompletionTime / totalPhases : 0,
+          totalWords,
+          errors: errorCount,
+        };
+      }),
+    );
+
+    return {
+      gamesSummary,
+    };
+  }
 }

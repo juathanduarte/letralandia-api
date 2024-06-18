@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -65,8 +65,16 @@ export class UserService {
     });
 
     if (!profile) {
-      throw new Error('Profile not found or does not belong to the user');
+      throw new NotFoundException(
+        'Profile not found or does not belong to the user',
+      );
     }
+
+    await this.prisma.profileGameInfo.deleteMany({
+      where: {
+        profileId: profileId,
+      },
+    });
 
     return this.prisma.profile.delete({
       where: {
@@ -80,12 +88,14 @@ export class UserService {
     profileId: number,
     updateProfileDto: UpdateProfileDto,
   ) {
-    const profile = await this.prisma.profile.findUnique({
+    const profile = await this.prisma.profile.findFirst({
       where: { id: profileId, userId },
     });
 
     if (!profile) {
-      throw new Error('Profile not found or does not belong to the user');
+      throw new NotFoundException(
+        'Profile not found or does not belong to the user',
+      );
     }
 
     return this.prisma.profile.update({

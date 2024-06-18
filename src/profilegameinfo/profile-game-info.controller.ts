@@ -32,4 +32,10 @@ export class ProfileGameInfoController {
   ) {
     return this.profileGameInfoService.getProfileGameSummary(profileId, gameId);
   }
+
+  @IsPublic()
+  @Get(':profileId/summary')
+  getAllProfileGamesSummary(@Param('profileId') profileId: number) {
+    return this.profileGameInfoService.getAllProfileGamesSummary(profileId);
+  }
 }
