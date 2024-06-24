@@ -25,7 +25,6 @@ export class ProfileGameInfoService {
       }
     };
 
-    // Garantir que incorrectWords tenha um valor padrão de 0
     const incorrectWords = data.incorrectWords ?? 0;
 
     if (existingInfo) {
@@ -56,7 +55,6 @@ export class ProfileGameInfoService {
         },
       });
     } else {
-      // Verificar se profileId, gameId e phaseId existem
       const profile = await this.prisma.profile.findUnique({
         where: { id: data.profileId },
       });
@@ -79,8 +77,6 @@ export class ProfileGameInfoService {
       }
 
       const rating = calculateRating(incorrectWords);
-
-      console.log('Creating new profile game info with data:', data); // Log data before creating
 
       return this.prisma.profileGameInfo.create({
         data: {

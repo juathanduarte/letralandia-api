@@ -18,12 +18,10 @@ export class GameService {
         syllables: true,
         size: true,
         image: true,
-        audioMale: true, // Incluindo a coluna de áudio masculino
-        audioFemale: true, // Incluindo a coluna de áudio feminino
+        audioMale: true,
+        audioFemale: true,
       },
     });
-
-    // console.log(words);
 
     return words.map((word) => ({
       ...word,

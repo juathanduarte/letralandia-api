@@ -4,8 +4,7 @@ import * as fs from 'fs';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Adicionar uma nova fase ao jogo existente
-  const gameId = 2; // Substitua pelo ID do jogo existente
+  const gameId = 2;
 
   const newPhase = await prisma.phase.create({
     data: {
@@ -90,7 +89,6 @@ async function main() {
   console.log('New phase added:', newPhase);
 }
 
-// Função para converter arquivos para base64
 function getFileBase64(filePath: string): string {
   try {
     const fileBuffer = fs.readFileSync(filePath);

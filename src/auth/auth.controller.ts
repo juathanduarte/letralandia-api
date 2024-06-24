@@ -22,7 +22,6 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   login(@Request() req: AuthRequest) {
-    // console.log('Fez login:', req.user);
     return this.authService.login(req.user);
   }
 
@@ -39,7 +38,6 @@ export class AuthController {
   logout(@Request() req: any) {
     const token = req.headers.authorization.split(' ')[1];
     this.authService.logout(token);
-    // console.log('Fez logout:', req.user);
     return { message: 'Logout successful' };
   }
 }

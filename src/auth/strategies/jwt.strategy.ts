@@ -13,11 +13,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET,
-      passReqToCallback: true, // Habilitar o recebimento do request no validate
+      passReqToCallback: true,
     });
-
-    // Logando o JWT_SECRET
-    // console.log('JWT_SECRET:', process.env.JWT_SECRET);
   }
 
   async validate(req: Request, payload: UserPayload): Promise<UserFromJwt> {

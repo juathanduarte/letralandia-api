@@ -51,7 +51,7 @@ export class UserService {
         userId: userId,
       },
       include: {
-        user: true, // Isso incluirá os detalhes do usuário associado ao perfil
+        user: true,
       },
     });
   }
