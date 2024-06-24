@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -10,6 +14,20 @@ export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email: createUserDto.email },
+    });
+    if (existingUser) {
+      throw new BadRequestException('E-mail já cadastrado.');
+    }
+
+    const isPasswordValid = this.validatePassword(createUserDto.password);
+    if (!isPasswordValid) {
+      throw new BadRequestException(
+        'Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
+      );
+    }
+
     const data = {
       ...createUserDto,
       password: await bcrypt.hash(createUserDto.password, 10),
@@ -21,6 +39,11 @@ export class UserService {
       ...createdUser,
       password: undefined,
     };
+  }
+
+  validatePassword(password: string): boolean {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}$/;
+    return re.test(password);
   }
 
   async createProfile(userId: number, createProfileDto: CreateProfileDto) {
