@@ -15,19 +15,20 @@ export class ProfileGameInfoService {
       },
     });
 
-    const calculateRating = (incorrectWords: number): number => {
-      if (incorrectWords <= 0) {
+    const calculateRating = (
+      wordsInfo: { word: string; count: number }[],
+    ): number => {
+      const totalErrors = wordsInfo.reduce((sum, word) => sum + word.count, 0);
+      if (totalErrors <= 0) {
         return 3;
-      } else if (incorrectWords <= 2) {
+      } else if (totalErrors <= 2) {
         return 2;
       } else {
         return 1;
       }
     };
 
-    const incorrectWords = data.incorrectWords ?? 0;
-
-    if (existingInfo) {
+    const updateProfileGameInfo = async (existingInfo, data) => {
       const updatedWordsInfo = JSON.parse(existingInfo.wordsInfo);
 
       data.wordsInfo.forEach((newWord) => {
@@ -41,7 +42,7 @@ export class ProfileGameInfoService {
         }
       });
 
-      const rating = calculateRating(incorrectWords);
+      const rating = calculateRating(data.wordsInfo);
 
       return this.prisma.profileGameInfo.update({
         where: {
@@ -50,11 +51,15 @@ export class ProfileGameInfoService {
         data: {
           wordsInfo: JSON.stringify(updatedWordsInfo),
           completionTime: existingInfo.completionTime + data.completionTime,
-          incorrectWords: existingInfo.incorrectWords + incorrectWords,
+          incorrectWords:
+            existingInfo.incorrectWords +
+            data.wordsInfo.reduce((sum, word) => sum + word.count, 0),
           rating,
         },
       });
-    } else {
+    };
+
+    const createProfileGameInfo = async (data) => {
       const profile = await this.prisma.profile.findUnique({
         where: { id: data.profileId },
       });
@@ -76,16 +81,25 @@ export class ProfileGameInfoService {
         throw new Error(`Phase with ID ${data.phaseId} does not exist`);
       }
 
-      const rating = calculateRating(incorrectWords);
+      const rating = calculateRating(data.wordsInfo);
 
       return this.prisma.profileGameInfo.create({
         data: {
           ...data,
           wordsInfo: JSON.stringify(data.wordsInfo),
-          incorrectWords,
+          incorrectWords: data.wordsInfo.reduce(
+            (sum, word) => sum + word.count,
+            0,
+          ),
           rating,
         },
       });
+    };
+
+    if (existingInfo) {
+      return updateProfileGameInfo(existingInfo, data);
+    } else {
+      return createProfileGameInfo(data);
     }
   }
 
