@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Post,
   Request,
@@ -21,8 +22,28 @@ export class AuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
-  login(@Request() req: AuthRequest) {
-    return this.authService.login(req.user);
+  async login(@Request() req: AuthRequest) {
+    try {
+      const user = await this.authService.validateUser(
+        req.body.email,
+        req.body.password,
+      );
+      return this.authService.login(user);
+    } catch (error) {
+      if (error.message === 'E-mail não encontrado.') {
+        throw new HttpException(
+          'E-mail não encontrado.',
+          HttpStatus.BAD_REQUEST,
+        );
+      } else if (error.message === 'Senha incorreta.') {
+        throw new HttpException('Senha incorreta.', HttpStatus.BAD_REQUEST);
+      } else {
+        throw new HttpException(
+          'Erro de autenticação.',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+    }
   }
 
   @IsPublic()
